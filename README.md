@@ -24,13 +24,14 @@
 ### 🏛 Admin
 *Fitur:*
 - Kelola data destinasi
-- Kelola data guide
+- Kelola data guide 
 - Lihat dan kelola semua booking & review
 
 ### 🧑‍💼 Guide
 *Fitur:*
-- Lengkapi profil pribadi
+- Mengatur profil, bio, dan harga
 - Daftar destinasi yang dilayani
+- Menentukan tanggal ketersediaan dan kuota
 - Lihat booking masuk
 - Melihat review yang diberikan wisatawan
 
@@ -38,7 +39,7 @@
 *Fitur:*
 - Melihat daftar destinasi dan daftar guide
 - Melihat profil guide
-- Booking guide
+- Melakukan booking guide berdasarkan tanggal yang tersedia
 - Memberi review pada guide yang dibooking
 
 ---
@@ -47,99 +48,98 @@
 
 ### 1. users
 
-| Nama Field  | Tipe Data                           | Keterangan           |
-| ----------- | ----------------------------------- | -------------------- |
-| id          | BIGINT                       | Primary key (auto increment)         |
-| name        | string                              | Nama pengguna        |
-| email       | string                              | Email unik           |
-| password    | string                              | Password terenkripsi |
-| role        | enum('admin', 'wisatawan', 'guide') | Role pengguna        |
-| created\_at | timestamp                           | tanggal dibuat             |
-| updated\_at | timestamp                           | tanggal diperbarui             |
+| Field      | Tipe Data       | Keterangan                    |
+| ---------- | --------------- | ----------------------------- |
+| id         | bigint (auto)   | Primary Key                   |
+| name       | string          | Nama pengguna                 |
+| email      | string (unique) | Email pengguna                |
+| password   | string          | Password (terenkripsi)        |
+| role       | enum(admin, wisatawan, guide)            | Role Pengguna |
+| timestamps | timestamps      | created\_at dan updated\_at   |
 
 
 ### 2. profiles
 
-| Nama Field  | Tipe Data     | Keterangan                 |
-| ----------- | ------------- | -------------------------- |
-| id          | BIGINT | Primary key (auto increment)                |
-| user\_id    | foreignId     | Relasi ke users          |
-| phone       | string        | Nomor HP (opsional)        |
-| address     | string        | Alamat pengguna (opsional) |
-| created\_at | timestamp     | tanggal dibuat                   |
-| updated\_at | timestamp     | tanggal diperbarui                   |
+| Field      | Tipe Data  | Keterangan                  |
+| ---------- | ---------- | --------------------------- |
+| id         | bigint     | Primary Key                 |
+| user\_id   | foreignId  | Relasi ke users.id        |
+| phone      | string     | Nomor telepon (nullable)    |
+| address    | string     | Alamat (nullable)           |
+| timestamps | timestamps | created\_at dan updated\_at |
+
 
 
 ### 3. guides
 
-| Nama Field  | Tipe Data     | Keterangan              |
-| ----------- | ------------- | ----------------------- |
-| id          | BIGINT | Primary key (auto increment)             |
-| user\_id    | foreignId     | Relasi ke users       |
-| bio         | text          | Deskripsi singkat guide |
-| price       | decimal       | Harga layanan guide     |
-| created\_at | timestamp     | tanggal dibuat                |
-| updated\_at | timestamp     | tanggal diperbarui                |
+| Field      | Tipe Data  | Keterangan                  |
+| ---------- | ---------- | --------------------------- |
+| id         | bigint     | Primary Key                 |
+| user\_id   | foreignId  | Relasi ke users.id        |
+| bio        | text       | Deskripsi guide (nullable)  |
+| price      | decimal    | Harga jasa guide            |
+| timestamps | timestamps | created\_at dan updated\_at |
+
 
 
 ### 4. destinations
 
-| Nama Field  | Tipe Data     | Keterangan             |
-| ----------- | ------------- | ---------------------- |
-| id          | BIGINT | Primary key (auto increment)            |
-| name        | string        | Nama destinasi         |
-| description | text          | Deskripsi destinasi    |
-| location    | string        | Lokasi destinasi       |
-| image       | string        | Path gambar (opsional) |
-| created\_at | timestamp     | tanggal dibuat               |
-| updated\_at | timestamp     | tanggal diperbarui               |
+| Field       | Tipe Data  | Keterangan                  |
+| ----------- | ---------- | --------------------------- |
+| id          | bigint     | Primary Key                 |
+| name        | string     | Nama destinasi              |
+| description | text       | Deskripsi destinasi         |
+| location    | string     | Lokasi                      |
+| image       | string     | Path gambar (nullable)      |
+| timestamps  | timestamps | created\_at dan updated\_at |
+
 
 
 ### 5. destination_guide
 
-| Nama Field      | Tipe Data     | Keterangan               |
-| --------------- | ------------- | ------------------------ |
-| id              | BIGINT | Primary key (auto increment)              |
-| guide\_id       | foreignId     | Relasi ke guides       |
-| destination\_id | foreignId     | Relasi ke destinations |
-| created\_at     | timestamp     | tanggal dibuat                 |
-| updated\_at     | timestamp     | tanggal diperbarui                 |
+| Field           | Tipe Data  | Keterangan                  |
+| --------------- | ---------- | --------------------------- |
+| id              | bigint     | Primary Key                 |
+| guide\_id       | foreignId  | Relasi ke guides.id       |
+| destination\_id | foreignId  | Relasi ke destinations.id |
+| timestamps      | timestamps | created\_at dan updated\_at |
+
 
 
 ### 6. bookings
 
-| Nama Field    | Tipe Data                               | Keterangan                    |
-| ------------- | --------------------------------------- | ----------------------------- |
-| id            | BIGINT                           | Primary key (auto increment)                  |
-| user\_id      | foreignId                               | Relasi ke users (wisatawan) |
-| guide\_id     | foreignId                               | Relasi ke guides            |
-| booking\_date | date                                    | Tanggal booking               |
-| status        | enum('pending', 'accepted', 'rejected') | Status                        |
-| created\_at   | timestamp                               | tanggal dibuat                      |
-| updated\_at   | timestamp                               | tanggal diperbarui                      |
+| Field         | Tipe Data  | Keterangan                        |
+| ------------- | ---------- | --------------------------------- |
+| id            | bigint     | Primary Key                       |
+| user\_id      | foreignId  | Relasi ke users.id (wisatawan)  |
+| guide\_id     | foreignId  | Relasi ke guides.id             |
+| booking\_date | date       | Tanggal booking                   |
+| status        | enum(pending, accepted, rejected)       | Status Booking |
+| timestamps    | timestamps | created\_at dan updated\_at       |
 
 
 ### 7. reviews
 
-| Nama Field  | Tipe Data     | Keterangan                    |
-| ----------- | ------------- | ----------------------------- |
-| id          | BIGINT | Primary key (auto increment)                  |
-| user\_id    | foreignId     | Relasi ke users (wisatawan) |
-| guide\_id   | foreignId     | Relasi ke guides            |
-| comment     | text          | Komentar review               |
-| created\_at | timestamp     | tanggal dibuat                      |
-| updated\_at | timestamp     | tanggal diperbarui                      |
+| Field      | Tipe Data  | Keterangan                       |
+| ---------- | ---------- | -------------------------------- |
+| id         | bigint     | Primary Key                      |
+| user\_id   | foreignId  | Relasi ke users.id (wisatawan) |
+| guide\_id  | foreignId  | Relasi ke guides.id            |
+| comment    | text       | Isi komentar                     |
+| timestamps | timestamps | created\_at dan updated\_at      |
+
 
 
 ### 8. availabilities
 
-| Nama Field      | Tipe Data     | Keterangan                  |
-| --------------- | ------------- | --------------------------- |
-| id              | BIGINT | Primary key (auto increment)                 |
-| guide\_id       | foreignId     | Relasi ke guides          |
-| available\_date | date          | Tanggal tersedia bagi guide |
-| created\_at     | timestamp     | tanggal dibuat                    |
-| updated\_at     | timestamp     | tanggal diperbarui                    |
+| Field           | Tipe Data  | Keterangan                                |
+| --------------- | ---------- | ----------------------------------------- |
+| id              | bigint     | Primary Key                               |
+| guide\_id       | foreignId  | Relasi ke guides.id                     |
+| available\_date | date       | Tanggal guide tersedia                    |
+| max\_quota      | integer    | Kuota maksimal wisatawan pada tanggal tsb |
+| timestamps      | timestamps | created\_at dan updated\_at               |
+
 
 
 ---
