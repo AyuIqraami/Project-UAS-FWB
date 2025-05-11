@@ -1,63 +1,159 @@
-[progres pertama](https://github.com/AyuIqraami/Project-UAS-FWB/blob/main/F.%20Ayu%20Iqraami_D0223329_Progess1%20Project%20FWB.pdf)
+<h1 align="center">Explore SULBAR</h1>
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<hr/>
+
+<h3 align="center">Sistem Informasi Wisata dan Tour Guide Sulawesi Barat</h3>
+
+---
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://github.com/user-attachments/assets/36f5b8ce-b59d-4c5d-892f-31a6f36b31b5" alt="Logo Unsulbar" width="200"/>
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>F. AYU IQRAAMI</strong><br/><br/>
+  <strong>D0223329</strong><br/><br/>
+  <strong>Framework Web Based</strong><br/><br/>
+  <strong>2025</strong>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 👥 Role dan Fitur-fiturnya
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🏛 Admin
+*Fitur:*
+- Kelola data destinasi
+- Kelola data guide
+- Lihat dan kelola semua booking & review
 
-## Learning Laravel
+### 🧑‍💼 Guide
+*Fitur:*
+- Lengkapi profil pribadi
+- Daftar destinasi yang dilayani
+- Lihat booking masuk
+- Melihat review yang diberikan wisatawan
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 👤 Wisatawan
+*Fitur:*
+- Melihat daftar destinasi dan daftar guide
+- Melihat profil guide
+- Booking guide
+- Memberi review pada guide yang dibooking
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🗄 Tabel-Tabel Database
 
-## Laravel Sponsors
+### 1. users
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Nama Field  | Tipe Data                           | Keterangan           |
+| ----------- | ----------------------------------- | -------------------- |
+| id          | BIGINT                       | Primary key (auto increment)         |
+| name        | string                              | Nama pengguna        |
+| email       | string                              | Email unik           |
+| password    | string                              | Password terenkripsi |
+| role        | enum('admin', 'wisatawan', 'guide') | Role pengguna        |
+| created\_at | timestamp                           | tanggal dibuat             |
+| updated\_at | timestamp                           | tanggal diperbarui             |
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+### 2. profiles
 
-## Contributing
+| Nama Field  | Tipe Data     | Keterangan                 |
+| ----------- | ------------- | -------------------------- |
+| id          | BIGINT | Primary key (auto increment)                |
+| user\_id    | foreignId     | Relasi ke users          |
+| phone       | string        | Nomor HP (opsional)        |
+| address     | string        | Alamat pengguna (opsional) |
+| created\_at | timestamp     | tanggal dibuat                   |
+| updated\_at | timestamp     | tanggal diperbarui                   |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+### 3. guides
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Nama Field  | Tipe Data     | Keterangan              |
+| ----------- | ------------- | ----------------------- |
+| id          | BIGINT | Primary key (auto increment)             |
+| user\_id    | foreignId     | Relasi ke users       |
+| bio         | text          | Deskripsi singkat guide |
+| price       | decimal       | Harga layanan guide     |
+| created\_at | timestamp     | tanggal dibuat                |
+| updated\_at | timestamp     | tanggal diperbarui                |
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. destinations
 
-## License
+| Nama Field  | Tipe Data     | Keterangan             |
+| ----------- | ------------- | ---------------------- |
+| id          | BIGINT | Primary key (auto increment)            |
+| name        | string        | Nama destinasi         |
+| description | text          | Deskripsi destinasi    |
+| location    | string        | Lokasi destinasi       |
+| image       | string        | Path gambar (opsional) |
+| created\_at | timestamp     | tanggal dibuat               |
+| updated\_at | timestamp     | tanggal diperbarui               |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### 5. destination_guide
+
+| Nama Field      | Tipe Data     | Keterangan               |
+| --------------- | ------------- | ------------------------ |
+| id              | BIGINT | Primary key (auto increment)              |
+| guide\_id       | foreignId     | Relasi ke guides       |
+| destination\_id | foreignId     | Relasi ke destinations |
+| created\_at     | timestamp     | tanggal dibuat                 |
+| updated\_at     | timestamp     | tanggal diperbarui                 |
+
+
+### 6. bookings
+
+| Nama Field    | Tipe Data                               | Keterangan                    |
+| ------------- | --------------------------------------- | ----------------------------- |
+| id            | BIGINT                           | Primary key (auto increment)                  |
+| user\_id      | foreignId                               | Relasi ke users (wisatawan) |
+| guide\_id     | foreignId                               | Relasi ke guides            |
+| booking\_date | date                                    | Tanggal booking               |
+| status        | enum('pending', 'accepted', 'rejected') | Status                        |
+| created\_at   | timestamp                               | tanggal dibuat                      |
+| updated\_at   | timestamp                               | tanggal diperbarui                      |
+
+
+### 7. reviews
+
+| Nama Field  | Tipe Data     | Keterangan                    |
+| ----------- | ------------- | ----------------------------- |
+| id          | BIGINT | Primary key (auto increment)                  |
+| user\_id    | foreignId     | Relasi ke users (wisatawan) |
+| guide\_id   | foreignId     | Relasi ke guides            |
+| comment     | text          | Komentar review               |
+| created\_at | timestamp     | tanggal dibuat                      |
+| updated\_at | timestamp     | tanggal diperbarui                      |
+
+
+### 8. availabilities
+
+| Nama Field      | Tipe Data     | Keterangan                  |
+| --------------- | ------------- | --------------------------- |
+| id              | BIGINT | Primary key (auto increment)                 |
+| guide\_id       | foreignId     | Relasi ke guides          |
+| available\_date | date          | Tanggal tersedia bagi guide |
+| created\_at     | timestamp     | tanggal dibuat                    |
+| updated\_at     | timestamp     | tanggal diperbarui                    |
+
+
+---
+
+## 🔗 Jenis relasi dan tabel yang berelasi
+
+| Relasi           | Tabel yang Terlibat                                 | Jenis Relasi                                                                |
+| ---------------- | --------------------------------------------------- | --------------------------------------------------------------------------- |
+| **One to One**   | users → profiles                                | Satu user punya satu profil                                                 |
+| **One to One**   | guides → users                                  | Satu guide adalah satu user                                                 |
+| **One to Many**  | guides → availabilities                         | Satu guide punya banyak ketersediaan                                        |
+| **Many to Many** | guides ↔ destinations (via destination_guide) | Satu guide melayani banyak destinasi, dan satu destinasi punya banyak guide |
+| **One to Many**  | users → bookings                                | Satu wisatawan bisa membuat banyak booking                                  |
+| **One to Many**  | guides → bookings                               | Satu guide bisa memiliki banyak booking                                     |
+| **One to Many**  | users → reviews                                 | Satu wisatawan memberikan banyak review                                     |
+| **One to Many**  | guides → reviews                                | Satu guide mendapat banyak review                                           |
+
