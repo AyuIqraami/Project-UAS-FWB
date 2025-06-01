@@ -1,3 +1,24 @@
+<h1 align="center">Explore SULBAR</h1>
+
+<hr/>
+
+<h3 align="center">Sistem Informasi Wisata dan Tour Guide Sulawesi Barat</h3>
+
+---
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/36f5b8ce-b59d-4c5d-892f-31a6f36b31b5" alt="Logo Unsulbar" width="200"/>
+</p>
+
+<p align="center">
+  <strong>F. AYU IQRAAMI</strong><br/><br/>
+  <strong>D0223329</strong><br/><br/>
+  <strong>Framework Web Based</strong><br/><br/>
+  <strong>2025</strong>
+</p>
+
+---
+
 ## 👥 Role dan Fitur-fiturnya
 
 ### 🏛 Admin
