@@ -1,1 +1,0 @@
-Welcome mahasiswa baru {{ $namaMahasiswa }}
